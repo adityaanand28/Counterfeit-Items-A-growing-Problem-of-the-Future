@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blockchain Authenticity System</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+    header {
+      background-color: #007BFF;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    nav {
+      background-color: #0056b3;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 10px;
+      padding: 5px 10px;
+      background-color: #007BFF;
+      border-radius: 5px;
+    }
+    nav a:hover {
+      background-color: #0056b3;
+    }
+    .container {
+      margin: 20px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      color: #007BFF;
+    }
+    label, input, button {
+      display: block;
+      margin: 10px 0;
+    }
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+    }
+    ol {
+      list-style-type: disc; /* Use disc for dots */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Blockchain Authenticity System</h1>
+  </header>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#manufacturer">For Manufacturer</a>
+    <a href="#transfer">Transfer Ownership</a>
+    <a href="#authenticate">Authenticate the Product</a>
+  </nav>
+  <div class="container" id="home">
+    <h2>Welcome to Blockchain based authenticity platform</h2>
+    <h1>Product Token Lifecycle</h1>
+        <ol>
+            <li>Manufacturer creates Unique Digital Token</li>
+            <li>Register it on Blockchain</li>
+            <li>Transferred to Customer</li>
+            <li>Use token to verify authenticity</li>
+        </ol>
+  </div>
+
+  <div class="container" id="manufacturer" style="display: none;">
+    <h2>For Manufacturer</h2>
+    <label for="productName">Product Name:</label>
+    <input type="text" id="productName"><br>
+    <label for="serialNumber">Serial/Product Number:</label>
+    <input type="text" id="serialNumber"><br>
+    <label for="manufacturingDate">Manufacturing Date:</label>
+    <input type="date" id="manufacturingDate"><br>
+    <label for="manufacturerName">Manufacturer Name:</label>
+    <input type="text" id="manufacturerName"><br>
+    <button onclick="generateId">Generate ID</button>
+    <p id="generatedId"></p>
+  </div>
+
+  <div class="container" id="transfer" style="display: none;">
+    <h2>Transfer Ownership</h2>
+    <label for="blockchainId">Blockchain ID:</label>
+    <input type="text" id="blockchainId"><br>
+    <label for="manufacturerNameTransfer">Manufacturer Name:</label>
+    <input type="text" id="manufacturerNameTransfer"><br>
+    <label for="customerName">Customer Name:</label>
+    <input type="text" id="customerName"><br>
+    <button onclick="transferOwnership">Transfer Ownership</button>
+    <p id="transferMessage"></p>
+  </div>
+
+  <div class="container" id="authenticate" style="display: none;">
+    <h2>Authenticate the Product</h2>
+    <label for="blockchainIdAuthenticate">Blockchain ID:</label>
+    <input type="text" id="blockchainIdAuthenticate"><br>
+    <label for="customerNameAuthenticate">Customer Name:</label>
+    <input type="text" id="customerNameAuthenticate"><br>
+    <button onclick="authenticateProduct">Authenticate</button>
+    <p id="productDetails"></p>
+  </div>
+
+  <footer>
+    Developed as a part of Flipkart Product Management Deck by Aditya Anand
+  </footer>
+  <script>
+    function generateId() {
+      const productName = document.getElementById("productName").value;
+      const serialNumber = document.getElementById("serialNumber").value;
+      const manufacturingDate = document.getElementById("manufacturingDate").value;
+      const manufacturerName = document.getElementById("manufacturerName").value;
+      const generatedId = Math.floor(Math.random() * 10000);
+
+      document.getElementById("generatedId").innerHTML = `Generated ID: ${generatedId}`;
+    }
+
+    function transferOwnership() {
+      const blockchainId = document.getElementById("blockchainId").value;
+      const manufacturerNameTransfer = document.getElementById("manufacturerNameTransfer").value;
+      const customerName = document.getElementById("customerName").value;
+
+      document.getElementById("transferMessage").innerHTML = "Successfully Transferred";
+    }
+	  
+	  function authenticateProduct() {
+      const blockchainIdAuthenticate = document.getElementById("blockchainIdAuthenticate").value;
+      const customerNameAuthenticate = document.getElementById("customerNameAuthenticate").value;
+
+      // You should implement logic to fetch product details based on the blockchain ID and customer name.
+      // For demonstration purposes, we'll display a placeholder message.
+      document.getElementById("productDetails").innerHTML = "Product not found/Invalid ID";
+    }
+
+    // Show/hide the appropriate sections based on the navigation links.
+    document.querySelectorAll("nav a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        const sectionId = link.getAttribute("href").substring(1);
+        document.querySelectorAll(".container").forEach(function (container) {
+          container.style.display = "none";
+        });
+        document.getElementById(sectionId).style.display = "block";
+      });
+    });
+  </script>
+</body>
+</html>
